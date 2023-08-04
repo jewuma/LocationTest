@@ -5,155 +5,146 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_google_signin_btn_text_dark_focused"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv_labellat"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_round_no"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:text="Lat:"
+        android:gravity="center"
+        android:text="Runde 1"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:background="@color/design_default_color_primary"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_lat"
+        android:id="@+id/tv_round_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="Setzrunde"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:background="#ff00ff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_round_no" />
+
+    <TextView
+        android:id="@+id/tv_lbl_laptime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="16dp"
-        android:text="0.00"
-        android:textSize="20sp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="96dp"
+        android:text="Rundenzeit"
+        android:textColor="@color/labels"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_lon"
+        android:id="@+id/tv_laptime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
+        android:layout_marginStart="336dp"
+        android:layout_marginTop="96dp"
+        android:text="0.00"
+        android:textColor="@color/values"
+        android:textSize="25sp"
+        android:gravity="right"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_lbl_timediff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:text="Zeitdiff"
+        android:textColor="@color/labels"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lbl_laptime" />
+
+    <TextView
+        android:id="@+id/tv_timediff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="336dp"
         android:layout_marginTop="16dp"
         android:text="0.00"
-        android:textSize="20sp"
+        android:textColor="@color/values"
+        android:textSize="25sp"
+        android:gravity="right"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lat" />
-
-    <TextView
-        android:id="@+id/tv_accuracy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:text="0.00"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_labelaccuracy" />
-
-    <TextView
-        android:id="@+id/tv_speed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:text="0.00"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_labelspeed" />
-
-    <TextView
-        android:id="@+id/tv_labelaccuracy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="20dp"
-        android:text="Accuracy:"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labelaltitude" />
-
-    <TextView
-        android:id="@+id/tv_altitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="16dp"
-        android:text="0.00"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lon" />
-
-    <TextView
-        android:id="@+id/tv_labelaltitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:text="Altitude:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labellon" />
-
-    <TextView
-        android:id="@+id/tv_labellon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:text="Lon:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labellat" />
-
-    <TextView
-        android:id="@+id/tv_lbladdress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:text="Address:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labelspeed" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_laptime" />
 
     <TextView
         android:id="@+id/tv_labelspeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:textSize="20sp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
         android:text="Speed:"
+        android:textColor="@color/labels"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labelaccuracy" />
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/sw_locationsupdates"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="56dp"
-        android:checked="true"
-        android:text="Location Updates"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lbladdress" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_lbl_timediff" />
 
     <TextView
-
-        android:id="@+id/tv_address"
+        android:id="@+id/tv_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:textSize="20sp"
+        android:layout_marginStart="336dp"
+        android:text="0.00"
+        android:textColor="@color/values"
+        android:textSize="25sp"
+        android:gravity="right"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_lbladdress" />
+        app:layout_constraintTop_toTopOf="@+id/tv_labelspeed" />
 
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+    <TextView
+        android:id="@+id/tv_waypoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="47dp" />
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/waypoint"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_labelspeed"
+        tools:text="Schwalbenschwanz" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="336dp"
+        android:text="0.00"
+        android:textColor="@color/values"
+        android:textSize="25sp"
+        android:gravity="right"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_waypoint" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_rundenliste"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

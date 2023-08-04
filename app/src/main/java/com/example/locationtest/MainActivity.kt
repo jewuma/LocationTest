@@ -18,74 +18,88 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.util.Locale
+import kotlin.math.roundToInt
 
 
 class MainActivity : AppCompatActivity() {
     private var fusedLocationProvider: FusedLocationProviderClient? = null
-    private val locationRequest: LocationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY,30).apply {
-        setMinUpdateDistanceMeters(10F)
-        setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
-        setWaitForAccurateLocation(true)
-    }.build()
-    private lateinit var tvLat:TextView
-    private lateinit var tvLon:TextView
-    private lateinit var tvAcc:TextView
-    private lateinit var tvAlt:TextView
-    private lateinit var tvAddress:TextView
-    private lateinit var tvSpeed:TextView
-    private lateinit var swUpdates:SwitchCompat
-    private lateinit var locationDatabase:LocationDatabase
+    private val locationRequest: LocationRequest =
+        LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 30).apply {
+            setMinUpdateDistanceMeters(10F)
+            setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
+            setWaitForAccurateLocation(true)
+        }.build()
+    private lateinit var tvRoundNo:TextView
+    private lateinit var tvRoundDecription:TextView
+    private lateinit var tvLaptime: TextView
+    private lateinit var tvTimediff: TextView
+    private lateinit var tvWaypoint: TextView
+    private lateinit var tvSpeed: TextView
+    private lateinit var tvTime: TextView
+    private lateinit var locationDatabase: LocationDatabase
+    private var time: Double = 0.0
+    private var timeRemember = System.currentTimeMillis()
+    private var lastWptIndex: Int = -1
+    private var roundNo:Int=0
+    private lateinit var roundTimes:Array<Double>
+    private lateinit var sektorTimes:Array<Array<Double>>
     private var locationCallback: LocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             val locationList = locationResult.locations
             if (locationList.isNotEmpty()) {
                 //The last location in the list is the newest
                 val location = locationList.last()
-                tvLat.text = location.latitude.toString()
-                tvLon.text= location.longitude.toString()
-                tvSpeed.text=(location.speed*3.6).toString()
-                tvAcc.text=location.accuracy.toString()
-                tvAlt.text=location.altitude.toString()
-                tvAddress.text=getCompleteAddressString(location.latitude,location.longitude)
-                val locationData = LocationData(
-                    latitude = location.latitude,
-                    longitude = location.longitude,
-                    timestamp = System.currentTimeMillis()
-                )
-
-                GlobalScope.launch {
-                    locationDatabase.locationDao().insert(locationData)
+                tvSpeed.text = String.format("%.2f", (location.speed * 3.6))
+                //tvAddress.text=getCompleteAddressString(location.latitude,location.longitude)
+                var wpt = Nordschleife.isWaypointReached(location.latitude, location.longitude)
+                if (wpt.waypointIndex != lastWptIndex && wpt.waypointIndex != -1) {
+                    lastWptIndex = wpt.waypointIndex
+                    if (wpt.waypointIndex == 0) {
+                        roundNo++
+                        tvRoundNo.text="Runde "+ roundNo
+                        tvRoundDecription.text=Nordschleife.getRoundName(roundNo)
+                        if (time != 0.0) {
+                            time = (System.currentTimeMillis() - timeRemember).toDouble() / 1000
+                        }
+                        timeRemember = System.currentTimeMillis();
+                    } else {
+                        time = ((System.currentTimeMillis() - timeRemember).toDouble() / 1000)
+                    }
+                    tvWaypoint.text = wpt
+                    tvTime.text = time.toString()
                 }
+//                val locationData = LocationData(
+//                    latitude = location.latitude,
+//                    longitude = location.longitude,
+//                    timestamp = System.currentTimeMillis()
+//                )
+//
+//                GlobalScope.launch {
+//                    locationDatabase.locationDao().insert(locationData)
+//                }
 
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        locationDatabase= LocationDatabase.getDatabase(this)
+        locationDatabase = LocationDatabase.getDatabase(this)
         setContentView(R.layout.activity_main)
         fusedLocationProvider = LocationServices.getFusedLocationProviderClient(this)
-
         checkLocationPermission()
-        swUpdates=findViewById(R.id.sw_locationsupdates)
-        tvLat=findViewById(R.id.tv_lat)
-        tvLon=findViewById(R.id.tv_lon)
-        tvAcc=findViewById(R.id.tv_accuracy)
-        tvAddress=findViewById(R.id.tv_address)
-        tvSpeed=findViewById(R.id.tv_speed)
-        tvAlt=findViewById(R.id.tv_altitude)
-        swUpdates.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                fusedLocationProvider!!.requestLocationUpdates(locationRequest,locationCallback,Looper.getMainLooper())
-            } else {
-                fusedLocationProvider!!.removeLocationUpdates(locationCallback)
-                tvLat.text="Keine Updates"
-            }
-        }
+        roundTimes= emptyArray<Double>()
+        sektorTimes= Array(15) { Array(Nordschleife.getSectorCount()) {0.0} }
+        tvRoundNo=findViewById(R.id.tv_round_no)
+        tvRoundDecription=findViewById(R.id.tv_round_description)
+        tvLaptime = findViewById(R.id.tv_laptime)
+        tvTimediff = findViewById(R.id.tv_timediff)
+        tvWaypoint = findViewById(R.id.tv_waypoint)
+        tvSpeed = findViewById(R.id.tv_speed)
+        tvTime = findViewById(R.id.tv_time)
     }
+
     private fun getCompleteAddressString(latitude: Double, longitude: Double): String {
         var strAdd = ""
         val geocoder = Geocoder(this, Locale.getDefault())
@@ -108,6 +122,7 @@ class MainActivity : AppCompatActivity() {
         }
         return strAdd
     }
+
     override fun onResume() {
         super.onResume()
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -259,6 +274,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 return
             }
+
             MY_PERMISSIONS_REQUEST_BACKGROUND_LOCATION -> {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
