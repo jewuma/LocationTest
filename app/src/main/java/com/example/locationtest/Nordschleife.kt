@@ -10,7 +10,7 @@ class Nordschleife {
             val latitude2: Double,
             val longitude2: Double
         )
-        public data class WpData(
+        data class WpData(
             val waypointName: String,
             val waypointIndex:Int
         )
@@ -20,11 +20,11 @@ class Nordschleife {
             "Sprint", "Sprint", "Sprint", "InLap MaxZeit"
         )
         private val waypoints = listOf(
-            Waypoint("Start/Ziel",51.08353,9.54072,51.08342,9.54114),
-            Waypoint("BiÖ1",51.08275,9.54072,51.08304,9.54056),
-            Waypoint("Kurve2",51.08239,9.54191,51.08247,9.54237),
-            Waypoint("Kurve3",51.08326,9.54332,51.08355,9.54323),
-            Waypoint("BiÖ11",51.08395,9.54159,51.08416,9.5414)
+            Waypoint("Start/Ziel",51.08307,9.54045,51.08328,9.54026),
+            Waypoint("Fuchsröhre",51.08329,9.5393,51.08349,9.53968),
+            Waypoint("Bergwerk",51.08411,9.53971,51.08392,9.53995),
+            Waypoint("Brünnchen",51.08432,9.54101,51.08457,9.54076),
+            Waypoint("Döttinger Höhe",51.08366,9.54129,51.08393,9.54113)
 //    Waypoint("Hocheichen",50.33963,6.93437,50.34188,6.93346),
 //    Waypoint("Flugplatz",50.34483,6.92614,50.34621,6.9266),
 //    Waypoint("Schwedenkreuz",50.35467,6.92385,50.35661,6.92434),
@@ -64,7 +64,7 @@ class Nordschleife {
             return WpData("",-1)
         }
         fun getRoundName(roundNo:Int):String {
-            return rounds[roundNo-1];
+            return rounds[roundNo-1]
         }
         fun getSectorCount():Int {
             return waypoints.count()

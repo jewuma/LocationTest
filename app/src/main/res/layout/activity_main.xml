@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Runde 1"
-        android:textSize="25dp"
+        android:text=""
+        android:textSize="25sp"
         android:textColor="@color/white"
         android:background="@color/design_default_color_primary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:text="Setzrunde"
+        android:text="@string/setround"
         android:textColor="@color/white"
         android:gravity="center"
         android:textSize="25sp"
@@ -37,114 +37,166 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_round_no" />
 
     <TextView
-        android:id="@+id/tv_lbl_laptime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="96dp"
-        android:text="Rundenzeit"
-        android:textColor="@color/labels"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/tv_laptime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="336dp"
-        android:layout_marginTop="96dp"
-        android:text="0.00"
+        android:layout_marginEnd="24dp"
+        android:gravity="end"
+        android:text="@string/double_zero"
         android:textColor="@color/values"
         android:textSize="25sp"
-        android:gravity="right"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_lbl_laptime" />
 
     <TextView
         android:id="@+id/tv_lbl_timediff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="Zeitdiff"
+        android:text="@string/timediff"
         android:textColor="@color/labels"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_lbl_laptime" />
 
     <TextView
-        android:id="@+id/tv_timediff"
+        android:id="@+id/tv_waypoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="336dp"
-        android:layout_marginTop="16dp"
-        android:text="0.00"
-        android:textColor="@color/values"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/waypoint"
         android:textSize="25sp"
-        android:gravity="right"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_laptime" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_labelspeed"
+        tools:text="@string/prestart" />
 
     <TextView
         android:id="@+id/tv_labelspeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Speed:"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/speed"
         android:textColor="@color/labels"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_lbl_timediff" />
 
     <TextView
+        android:id="@+id/tv_lbl_laptime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="96dp"
+        android:text="@string/round_time"
+        android:textColor="@color/labels"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_timediff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:gravity="end"
+        android:text="@string/double_zero"
+        android:textColor="@color/values"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_lbl_timediff" />
+
+    <TextView
         android:id="@+id/tv_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="336dp"
-        android:text="0.00"
+        android:layout_marginEnd="24dp"
+        android:gravity="end"
+        android:text="@string/double_zero"
         android:textColor="@color/values"
         android:textSize="25sp"
-        android:gravity="right"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_labelspeed" />
-
-    <TextView
-        android:id="@+id/tv_waypoint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/waypoint"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_labelspeed"
-        tools:text="Schwalbenschwanz" />
 
     <TextView
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="336dp"
-        android:text="0.00"
+        android:layout_marginEnd="24dp"
+        android:gravity="end"
+        android:text="@string/double_zero"
         android:textColor="@color/values"
         android:textSize="25sp"
-        android:gravity="right"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_waypoint" />
+
+    <Button
+        android:id="@+id/btn_startpage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/backButton"
+        android:text="@string/startpage"
+        android:onClick="gotoStartpage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_waypoint" />
+
+    <Button
+        android:id="@+id/btn_restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/resetButton"
+        android:text="@string/reset"
+        android:onClick="restart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_rundenliste"
         android:layout_width="match_parent"
         android:layout_height="320dp"
-        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_startpage" />
 
+     <!--   <TextView
+           android:id="@+id/tv_lbl_lat_lon"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="48dp"
+           android:layout_marginTop="20dp"
+           android:text="lat-lon"
+           android:textColor="@color/white"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/tv_waypoint" />
 
+       <TextView
+           android:id="@+id/tv_lat_lon"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginEnd="20dp"
+           android:text="Position"
+           android:textColor="@color/white"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="@+id/tv_lbl_lat_lon" />
 
+       <TextView
+           android:id="@+id/tv_posname"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="48dp"
+           android:layout_marginTop="16dp"
+           android:text="Pos-Name"
+           android:textColor="#FFEB3B"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/tv_lbl_lat_lon" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

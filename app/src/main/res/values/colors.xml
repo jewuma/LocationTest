@@ -9,5 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="labels">#FFC107</color>
     <color name="values">#AAFFAA</color>
+    <color name="green">#00FF00</color>
+    <color name="red">#FF0000</color>
     <color name="waypoint">#8888ff</color>
+    <color name="backButton">#3FE8D4</color>
+    <color name="resetButton">#99AAFF</color>
 </resources>
