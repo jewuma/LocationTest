@@ -25,6 +25,7 @@
     <string name="startpage">Startseite</string>
     <string name="rcn_logo">RCN Logo</string>
     <string name="start_race">Start Race</string>
+    <string name="missed_start">Fehler - Startlinie verpasst</string>
     <string name="lorem_ipsum">
         Lorem ipsum
     </string>
